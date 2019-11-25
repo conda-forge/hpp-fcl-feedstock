@@ -10,7 +10,7 @@ source:
   sha256: 1df98a3bf49df379203f5d43b00edd2ce5f23a7ae6c61ee3ecfdf6da0adb9fdc
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -24,6 +24,9 @@ requirements:
     - pkg-config
   host:
     - eigen
+    - boost
+    - python
+    - eigenpy
     - assimp
     - octomap
   run:

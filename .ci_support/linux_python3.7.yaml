@@ -1,3 +1,5 @@
+boost:
+- 1.70.0
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -8,3 +10,11 @@ cxx_compiler_version:
 - '7'
 docker_image:
 - condaforge/linux-anvil-comp7
+pin_run_as_build:
+  boost:
+    max_pin: x.x.x
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python:
+- '3.7'
