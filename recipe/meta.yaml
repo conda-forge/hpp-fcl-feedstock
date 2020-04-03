@@ -1,5 +1,5 @@
 {% set name = "hpp-fcl" %}
-{% set version = "1.3.0" %}
+{% set version = "1.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/hpp-fcl-{{ version }}.tar.gz
-  sha256: ffdd5487ef93ba0ac190807d1ef71528e380803a46a69204916944f5df82b218
+  sha256: c2db8d1e3324883ec2aa5b67c0bd10bf19056cdf30a61b04f7a6e7f536873a53
   patches:
     - cmake.patch
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -52,7 +52,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: 'An extension of the Flexible Collision Library'
+  summary: An extension of the Flexible Collision Library
   dev_url: https://github.com/humanoid-path-planner/hpp-fcl
 
 extra:
