@@ -1,5 +1,5 @@
 {% set name = "hpp-fcl" %}
-{% set version = "1.4.2" %}
+{% set version = "1.4.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/hpp-fcl-{{ version }}.tar.gz
-  sha256: 6e29cec623c7630288c8b448b508fa8bde2addf6c8cdec2652b8e2778529b43c
+  sha256: faff39bf63648383aad347845544c2713471d2195f1d1e4af083c92911c18580
 
 build:
   number: 0
