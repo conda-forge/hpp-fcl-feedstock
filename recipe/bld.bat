@@ -3,8 +3,11 @@ set PKG_CONFIG_PATH=%LIBRARY_PREFIX%\share\pkgconfig
 mkdir build
 cd build
 
+set "CC=clang-cl.exe"
+set "CXX=clang-cl.exe"
+
 cmake ^
-    -G "%CMAKE_GEN%" -T "ClangCl" ^
+    -G "NMake Makefiles" ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DHPP_FCL_SITELIB_ROOT=%PREFIX% ^
