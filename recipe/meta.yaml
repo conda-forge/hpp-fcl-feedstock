@@ -10,9 +10,10 @@ source:
   sha256: 8773f63b81ba6d4e5f892e58fadf55d2c2d897e04246be5d120e6a64571d42f1
   patches:
     - patches/0001-cmake-fix-install-dir-for-DLL.patch
+    - patches/core-remove-useless-include.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
