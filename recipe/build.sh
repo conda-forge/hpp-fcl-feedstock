@@ -10,7 +10,8 @@ cmake .. \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \
       -DCMAKE_INSTALL_LIBDIR=lib \
       -DPython_EXECUTABLE=$PYTHON \
-      -DPYTHON_EXECUTABLE=$PYTHON
+      -DPYTHON_EXECUTABLE=$PYTHON \
+      -DBUILD_TESTING=OFF
 
 make -j${CPU_COUNT}
 make install
