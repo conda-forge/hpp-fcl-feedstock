@@ -13,6 +13,7 @@ cmake ^
     -DHPP_FCL_SITELIB_ROOT=%PREFIX% ^
     -DPYTHON_EXECUTABLE=%PYTHON% ^
     -DBUILD_PYTHON_INTERFACE=ON ^
+    -DBUILD_TESTING=OFF ^
     %SRC_DIR%
 if errorlevel 1 exit 1
 

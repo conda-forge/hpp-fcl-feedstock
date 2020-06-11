@@ -19,7 +19,7 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - cmake
-    - clang
+    - clang  # [win]
     - make
     - pkg-config
   host:
