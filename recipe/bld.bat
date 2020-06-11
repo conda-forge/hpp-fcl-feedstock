@@ -4,7 +4,7 @@ mkdir build
 cd build
 
 cmake ^
-    -G "Visual Studio" -T "ClangCl" -DCMAKE_GENERATOR_PLATFORM=x64 ^
+    -G %CMAKE_GEN% -T "ClangCl" ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DHPP_FCL_SITELIB_ROOT=%PREFIX% ^
