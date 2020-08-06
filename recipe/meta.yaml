@@ -8,9 +8,6 @@ package:
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/archive/hpp-fcl-{{ version }}.tar.gz
   sha256: 67fd5c84932b420a0f765e3a9547dcf434a2a0e921424c789134f9b8c10c7f1c
-  patches:
-    - patches/0001-cmake-fix-install-dir-for-DLL.patch
-    - patches/core-remove-useless-include.patch
 
 build:
   number: 0
