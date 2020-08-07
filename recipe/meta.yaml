@@ -1,5 +1,5 @@
 {% set name = "hpp-fcl" %}
-{% set version = "1.4.6" %}
+{% set version = "1.5.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/hpp-fcl-{{ version }}.tar.gz
-  sha256: 8773f63b81ba6d4e5f892e58fadf55d2c2d897e04246be5d120e6a64571d42f1
+  sha256: 78fe426f64457b47255b8649b742354cdf1e2293b6f6bd0a0115e979e1e981e7
   patches:
-    - patches/0001-cmake-fix-install-dir-for-DLL.patch
-    - patches/core-remove-useless-include.patch
+    - patches/0001-cmake-fix-search-of-assimp-on-Windows.patch
+    - patches/0002-cmake-fix-check.patch 
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
