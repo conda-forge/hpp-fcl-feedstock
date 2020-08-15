@@ -8,9 +8,6 @@ package:
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/hpp-fcl-{{ version }}.tar.gz
   sha256: 4e1434dee200e13a6d27ab546e2af255e3f4c76d363269963b9a9dc137ea3528
-  patches:
-    - patches/0001-cmake-fix-search-of-assimp-on-Windows.patch
-    - patches/0002-cmake-fix-check.patch
 
 build:
   number: 0
