@@ -30,6 +30,7 @@ requirements:
     - eigenpy
     - assimp
     - octomap
+    - numpy
   run:
     - assimp
     - eigen
@@ -37,6 +38,7 @@ requirements:
     - boost
     - python
     - eigenpy
+    - numpy
 
 test:
   requires:
