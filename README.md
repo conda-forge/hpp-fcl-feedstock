@@ -5,11 +5,11 @@ Home: https://github.com/humanoid-path-planner/hpp-fcl
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/hpp-fcl-feedstock/blob/master/LICENSE.txt)
 
 Summary: An extension of the Flexible Collision Library
 
-
+Development: https://github.com/humanoid-path-planner/hpp-fcl
 
 Current build status
 ====================
@@ -50,6 +50,13 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>linux_64_boost1.72.0python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hpp-fcl-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.72.0python3.9.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>linux_64_boost1.74.0python3.6.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
@@ -68,6 +75,13 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hpp-fcl-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.74.0python3.8.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_boost1.74.0python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hpp-fcl-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.74.0python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -92,6 +106,13 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>osx_64_boost1.72.0python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hpp-fcl-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.72.0python3.9.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>osx_64_boost1.74.0python3.6.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
@@ -110,6 +131,13 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hpp-fcl-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.74.0python3.8.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_boost1.74.0python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hpp-fcl-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.74.0python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -134,6 +162,13 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>win_64_boost1.72.0python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hpp-fcl-feedstock?branchName=master&jobName=win&configuration=win_64_boost1.72.0python3.9.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>win_64_boost1.74.0python3.6.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
@@ -152,6 +187,13 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hpp-fcl-feedstock?branchName=master&jobName=win&configuration=win_64_boost1.74.0python3.8.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_boost1.74.0python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7388&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/hpp-fcl-feedstock?branchName=master&jobName=win&configuration=win_64_boost1.74.0python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr>
