@@ -24,8 +24,6 @@ requirements:
     - clang  # [win]
     - make  # [not win]
     - doxygen
-    - pylatexenc
-    - lxml
   host:
     - eigen
     - boost
@@ -33,6 +31,8 @@ requirements:
     - eigenpy
     - assimp
     - octomap
+    - pylatexenc
+    - lxml
   run:
     - assimp
     - eigen
