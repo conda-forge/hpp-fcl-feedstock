@@ -3,6 +3,9 @@
 mkdir build
 cd build
 
+python -c "import lxml"
+ls $SP_DIR
+
 cmake .. \
       -DCMAKE_BUILD_TYPE=Release \
       -DBUILD_PYTHON_INTERFACE=ON \
