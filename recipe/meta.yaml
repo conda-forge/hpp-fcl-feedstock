@@ -23,6 +23,9 @@ requirements:
     - cmake
     - clang  # [win]
     - make  # [not win]
+    - doxygen
+    - pylatexenc
+    - lxml
   host:
     - eigen
     - boost
