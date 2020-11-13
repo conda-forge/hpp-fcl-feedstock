@@ -31,8 +31,8 @@ requirements:
     - eigenpy
     - assimp
     - octomap
-    - pylatexenc
-    - lxml
+    - pylatexenc  # [not win]
+    - lxml  # [not win]
   run:
     - assimp
     - eigen
