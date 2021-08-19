@@ -10,7 +10,7 @@ source:
   sha256: eb2755d6ef53786a3b1e62279810af7e96304322561ab371140d7310058849a4
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -24,6 +24,10 @@ requirements:
     - clang  # [win]
     - make  # [not win]
     - doxygen
+    - pylatexenc  # [not win]
+    - lxml  # [not win]
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
     - eigen
     - boost
@@ -31,8 +35,6 @@ requirements:
     - eigenpy
     - assimp
     - octomap
-    - pylatexenc  # [not win]
-    - lxml  # [not win]
   run:
     - assimp
     - eigen
