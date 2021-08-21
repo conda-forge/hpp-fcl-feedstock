@@ -23,3 +23,10 @@ cmake ${CMAKE_ARGS} .. \
 
 make -j${CPU_COUNT}
 make install
+
+if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
+  echo $BUILD_PREFIX
+  echo $PREFIX
+  sed -i.back 's|'"$BUILD_PREFIX"'|'"$PREFIX"'|g' $PREFIX/lib/cmake/eigenpy/eigenpyTargets.cmake
+  rm $PREFIX/lib/cmake/eigenpy/eigenpyTargets.cmake.back
+fi
