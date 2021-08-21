@@ -36,6 +36,7 @@ requirements:
     - eigenpy
     - assimp
     - octomap
+    - numpy
   run:
     - assimp
     - eigen
@@ -43,6 +44,7 @@ requirements:
     - boost
     - python
     - eigenpy
+    - {{ pin_compatible('numpy') }}
 
 test:
   requires:
