@@ -24,8 +24,6 @@ requirements:
     - clang  # [win]
     - make  # [not win]
     - doxygen
-    - pylatexenc  # [not win]
-    - lxml  # [not win]
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
@@ -37,6 +35,8 @@ requirements:
     - assimp
     - octomap
     - numpy  # [build_platform != target_platform]
+    - pylatexenc  # [not win]
+    - lxml  # [not win]
   run:
     - assimp
     - eigen
