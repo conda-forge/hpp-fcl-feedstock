@@ -27,6 +27,8 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
+    - pylatexenc  # [not win]
+    - lxml  # [not win]
   host:
     - eigen
     - boost
