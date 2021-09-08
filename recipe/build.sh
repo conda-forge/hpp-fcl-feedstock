@@ -27,6 +27,6 @@ make install
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
   echo $BUILD_PREFIX
   echo $PREFIX
-  sed -i.back 's|'"$BUILD_PREFIX"'|'"$PREFIX"'|g' $PREFIX/lib/cmake/eigenpy/eigenpyTargets.cmake
-  rm $PREFIX/lib/cmake/eigenpy/eigenpyTargets.cmake.back
+  sed -i.back 's|'"$BUILD_PREFIX"'|'"$PREFIX"'|g' $PREFIX/lib/cmake/hpp-fcl/hpp-fclTargets.cmake
+  rm $PREFIX/lib/cmake/hpp-fcl/hpp-fclTargets.cmake.back
 fi
