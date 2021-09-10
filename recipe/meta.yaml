@@ -10,7 +10,7 @@ source:
   sha256: e05a58245fca9764e2e6c4d2a273524fec661e1f88d9448c51c6b2d9aa39034d
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -39,6 +39,7 @@ requirements:
     - numpy  # [build_platform != target_platform]
     - pylatexenc  # [not win]
     - lxml  # [not win]
+    - qhull
   run:
     - assimp
     - eigen
