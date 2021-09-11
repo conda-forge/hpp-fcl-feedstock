@@ -14,6 +14,7 @@ cmake ^
     -DPYTHON_SITELIB=%SP_DIR% ^
     -DPYTHON_EXECUTABLE=%PYTHON% ^
     -DBUILD_PYTHON_INTERFACE=ON ^
+    -DHPP_FCL_HAS_QHULL=OFF ^
     -DBUILD_TESTING=OFF ^
     %SRC_DIR%
 if errorlevel 1 exit 1
