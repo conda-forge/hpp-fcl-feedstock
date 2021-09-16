@@ -97,19 +97,42 @@ index d244f3e..13031b1 100644
    _ADD_TO_LIST_IF_NOT_PRESENT(_PACKAGE_CONFIG${component}_DEPENDENCIES_PROJECTS "${ARGV0}")
  
    string(REPLACE ";" " " PACKAGE_ARGS "${PARSED_ARGN_UNPARSED_ARGUMENTS}")
+diff --git a/python/CMakeLists.txt b/python/CMakeLists.txt
+index 07a72ef..aee9d22 100644
+--- a/python/CMakeLists.txt
++++ b/python/CMakeLists.txt
+@@ -42,6 +42,7 @@ SET(LIBRARY_NAME hppfcl)
+ 
+ SET(${LIBRARY_NAME}_HEADERS
+   fcl.hh
++  deprecation.hh
+   )
+ 
+ SET(ENABLE_PYTHON_DOXYGEN_AUTODOC TRUE CACHE BOOL "Enable automatic documentation of Python bindings from Doxygen documentation")
 diff --git a/python/collision-geometries.cc b/python/collision-geometries.cc
-index e6f35f8..6ce4004 100644
+index e6f35f8..54cac0b 100644
 --- a/python/collision-geometries.cc
 +++ b/python/collision-geometries.cc
-@@ -33,6 +33,7 @@
+@@ -33,8 +33,10 @@
  //  POSSIBILITY OF SUCH DAMAGE.
  
  #include <eigenpy/eigenpy.hpp>
 +#include <eigenpy/eigen-to-python.hpp>
  
  #include "fcl.hh"
++#include "deprecation.hh"
  
-@@ -77,8 +78,9 @@ typedef std::vector<Triangle> Triangles;
+ #include <hpp/fcl/fwd.hh>
+ #include <hpp/fcl/shape/geometric_shapes.h>
+@@ -69,6 +71,7 @@
+ using namespace boost::python;
+ using namespace hpp::fcl;
+ namespace dv = doxygen::visitor;
++namespace bp = boost::python;
+ 
+ using boost::noncopyable;
+ 
+@@ -77,18 +80,19 @@ typedef std::vector<Triangle> Triangles;
  
  struct BVHModelBaseWrapper
  {
@@ -119,9 +142,10 @@ index e6f35f8..6ce4004 100644
 +  typedef Eigen::Map<RowMatrixX3> MapRowMatrixX3;
 +  typedef Eigen::Ref<RowMatrixX3> RefRowMatrixX3;
    
-   static Vec3f & vertice (BVHModelBase & bvh, int i)
+-  static Vec3f & vertice (BVHModelBase & bvh, int i)
++  static Vec3f & vertex (BVHModelBase & bvh, int i)
    {
-@@ -86,9 +88,9 @@ struct BVHModelBaseWrapper
+     if (i >= bvh.num_vertices) throw std::out_of_range("index is out of range");
      return bvh.vertices[i];
    }
  
@@ -133,16 +157,157 @@ index e6f35f8..6ce4004 100644
    }
    
    static Triangle tri_indices (const BVHModelBase& bvh, int i)
-@@ -472,8 +474,11 @@ void exposeCollisionGeometries ()
-     .def ("vertice", &BVHModelBaseWrapper::vertice,
+@@ -119,11 +123,20 @@ void exposeBVHModel (const std::string& bvname)
+ 
+ struct ConvexBaseWrapper
+ {
+-  static Vec3f points (const ConvexBase& convex, int i)
++  typedef Eigen::Matrix<double,Eigen::Dynamic,3,Eigen::RowMajor> RowMatrixX3;
++  typedef Eigen::Map<RowMatrixX3> MapRowMatrixX3;
++  typedef Eigen::Ref<RowMatrixX3> RefRowMatrixX3;
++  
++  static Vec3f & point (const ConvexBase& convex, int i)
+   {
+     if (i >= convex.num_points) throw std::out_of_range("index is out of range");
+     return convex.points[i];
+   }
++  
++  static RefRowMatrixX3 points (const ConvexBase& convex)
++  {
++    return MapRowMatrixX3(convex.points[0].data(),convex.num_points,3);
++  }
+ 
+   static list neighbors (const ConvexBase& convex, int i)
+   {
+@@ -229,7 +242,18 @@ void exposeShapes ()
+     ("ConvexBase", doxygen::class_doc<ConvexBase>(), no_init)
+     .DEF_RO_CLASS_ATTRIB (ConvexBase, center)
+     .DEF_RO_CLASS_ATTRIB (ConvexBase, num_points)
+-    .def ("points", &ConvexBaseWrapper::points)
++    .def ("point", &ConvexBaseWrapper::point,
++          bp::args("self","index"),"Retrieve the point given by its index.",
++          bp::return_internal_reference<>())
++    .def ("points", &ConvexBaseWrapper::point,
++          bp::args("self","index"),"Retrieve the point given by its index.",
++          ::hpp::fcl::python::deprecated_member< bp::return_internal_reference<> >())
++    .def ("points", &ConvexBaseWrapper::points,
++          bp::args("self"),"Retrieve all the points.",
++          bp::with_custodian_and_ward_postcall<0,1>())
++  //    .add_property ("points",
++  //                   bp::make_function(&ConvexBaseWrapper::points,bp::with_custodian_and_ward_postcall<0,1>()),
++  //                   "Points of the convex.")
+     .def ("neighbors", &ConvexBaseWrapper::neighbors)
+     .def ("convexHull", &ConvexBaseWrapper::convexHull,
+         doxygen::member_func_doc(&ConvexBase::convexHull),
+@@ -367,8 +391,6 @@ void exposeCollisionGeometries ()
+       ;
+   }
+   
+-  namespace bp = boost::python;
+-  
+   class_<AABB>("AABB",
+                "A class describing the AABB collision structure, which is a box in 3D space determined by two diagonal points",
+                no_init)
+@@ -469,12 +491,18 @@ void exposeCollisionGeometries ()
+ 
+   class_ <BVHModelBase, bases<CollisionGeometry>, BVHModelPtr_t, noncopyable>
+     ("BVHModelBase", no_init)
+-    .def ("vertice", &BVHModelBaseWrapper::vertice,
++    .def ("vertex", &BVHModelBaseWrapper::vertex,
            bp::args("self","index"),"Retrieve the vertex given by its index.",
            bp::return_internal_reference<>())
-+    .def ("vertices", &BVHModelBaseWrapper::vertice,
++    .def ("vertices", &BVHModelBaseWrapper::vertex,
 +          bp::args("self","index"),"Retrieve the vertex given by its index.",
-+          bp::return_internal_reference<>())
++          ::hpp::fcl::python::deprecated_member< bp::return_internal_reference<> >())
      .def ("vertices", &BVHModelBaseWrapper::vertices,
 -          bp::args("self"),"Retrieve the vertex given by its index.",
 +          bp::args("self"),"Retrieve all the vertices.",
            bp::with_custodian_and_ward_postcall<0,1>())
++//    .add_property ("vertices",
++//                   bp::make_function(&BVHModelBaseWrapper::vertices,bp::with_custodian_and_ward_postcall<0,1>()),
++//                   "Vertices of the BVH.")
      .def ("tri_indices", &BVHModelBaseWrapper::tri_indices,
            bp::args("self","index"),"Retrieve the triangle given by its index.")
+     .def_readonly ("num_vertices", &BVHModelBase::num_vertices)
+diff --git a/python/deprecation.hh b/python/deprecation.hh
+new file mode 100644
+index 0000000..b5d90df
+--- /dev/null
++++ b/python/deprecation.hh
+@@ -0,0 +1,61 @@
++//
++// Copyright (c) 2020-2021 INRIA
++//
++
++#ifndef HPP_FCL_PYTHON_UTILS_DEPRECATION_H
++#define HPP_FCL_PYTHON_UTILS_DEPRECATION_H
++
++#include <Python.h>
++#include <boost/python.hpp>
++#include <string>
++
++namespace hpp {
++namespace fcl {
++namespace python {
++
++  template<class Policy = boost::python::default_call_policies>
++  struct deprecated_warning_policy : Policy
++  {
++    deprecated_warning_policy(const std::string & warning_message = "")
++    : Policy()
++    , m_warning_message(warning_message)
++    {}
++  
++    template <class ArgumentPackage>
++    bool precall(ArgumentPackage const & args) const
++    {
++      PyErr_WarnEx(PyExc_UserWarning,m_warning_message.c_str(),1);
++      return static_cast<const Policy*>(this)->precall(args);
++    }
++  
++    typedef typename Policy::result_converter result_converter;
++    typedef typename Policy::argument_package argument_package;
++  
++  protected:
++  
++    const std::string m_warning_message;
++  };
++
++  template<class Policy = boost::python::default_call_policies>
++  struct deprecated_member : deprecated_warning_policy<Policy>
++  {
++    deprecated_member(const std::string & warning_message
++                      = "This class member has been marked as deprecated and will be removed in a future release.")
++    : deprecated_warning_policy<Policy>(warning_message)
++    {}
++  };
++
++  template<class Policy = boost::python::default_call_policies>
++  struct deprecated_function : deprecated_warning_policy<Policy>
++  {
++    deprecated_function(const std::string & warning_message
++                        = "This function has been marked as deprecated and will be removed in a future release.")
++    : deprecated_warning_policy<Policy>(warning_message)
++    {}
++  };
++
++}
++}
++}
++
++#endif // ifndef HPP_FCL_PYTHON_UTILS_DEPRECATION_H
+diff --git a/python/fcl.cc b/python/fcl.cc
+index ccc5883..ccac1d1 100644
+--- a/python/fcl.cc
++++ b/python/fcl.cc
+@@ -89,6 +89,10 @@ void exposeMeshLoader ()
+ 
+ BOOST_PYTHON_MODULE(hppfcl)
+ {
++  namespace bp = boost::python;
++  
++  PyImport_ImportModule("warnings");
++  
+   exposeVersion();
+   exposeMaths();
+   exposeCollisionGeometries();
