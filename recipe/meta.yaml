@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/hpp-fcl-{{ version }}.tar.gz
   sha256: bf5be228772a8714381809810b5e2b6c847beb9a002cb969f67c749431cd20c2
-  patches:
-    - patches/all.patch
 
 build:
   number: 0
