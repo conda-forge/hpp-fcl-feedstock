@@ -35,7 +35,7 @@ requirements:
     - eigenpy
     - assimp
     - octomap
-    - numpy  # [build_platform != target_platform]
+    - numpy
     - pylatexenc  # [not win]
     - lxml  # [not win]
     - qhull
@@ -46,7 +46,7 @@ requirements:
     - boost
     - python
     - eigenpy
-    - {{ pin_compatible('numpy') }}  # [build_platform != target_platform]
+    - {{ pin_compatible('numpy') }}
     - qhull
 
 test:
