@@ -18,6 +18,8 @@ cxx_compiler_version:
 - '9'
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64
+numpy:
+- '1.18'
 pin_run_as_build:
   boost:
     max_pin: x.x.x
@@ -25,6 +27,9 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_cpython
+- 3.7.* *_cpython
 target_platform:
 - linux-aarch64
+zip_keys:
+- - python
+  - numpy
