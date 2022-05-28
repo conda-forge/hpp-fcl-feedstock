@@ -1,7 +1,7 @@
 BUILD:
 - aarch64-conda_cos7-linux-gnu
 assimp:
-- 5.2.3
+- 5.2.4
 boost:
 - 1.74.0
 cdt_arch:
