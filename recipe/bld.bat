@@ -13,6 +13,7 @@ cmake ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DPYTHON_SITELIB=%SP_DIR% ^
     -DPYTHON_EXECUTABLE=%PYTHON% ^
+    -DPython3_EXECUTABLE=%PYTHON% ^
     -DPython3_NumPy_INCLUDE_DIR=%SP_DIR%/numpy/core/include ^
     -DBUILD_PYTHON_INTERFACE=ON ^
     -DHPP_FCL_HAS_QHULL=OFF ^
