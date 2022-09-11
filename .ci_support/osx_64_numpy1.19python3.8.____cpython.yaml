@@ -3,7 +3,7 @@ MACOSX_DEPLOYMENT_TARGET:
 assimp:
 - 5.2.4
 boost:
-- 1.74.0
+- 1.78.0
 channel_sources:
 - conda-forge
 channel_targets:
@@ -11,7 +11,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '13'
+- '14'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 numpy:
