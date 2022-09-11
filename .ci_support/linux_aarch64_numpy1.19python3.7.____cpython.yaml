@@ -3,7 +3,7 @@ BUILD:
 assimp:
 - 5.2.4
 boost:
-- 1.74.0
+- 1.78.0
 cdt_arch:
 - aarch64
 cdt_name:
