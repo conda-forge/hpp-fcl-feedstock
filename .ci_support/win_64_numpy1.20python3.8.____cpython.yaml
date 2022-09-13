@@ -7,9 +7,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 numpy:
-- '1.19'
-cxx_compiler:
-- vs2019
+- '1.20'
 pin_run_as_build:
   boost:
     max_pin: x.x.x
@@ -17,7 +15,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_cpython
+- 3.8.* *_cpython
 target_platform:
 - win-64
 zip_keys:
