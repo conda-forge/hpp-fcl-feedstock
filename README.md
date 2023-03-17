@@ -1,11 +1,11 @@
-About hpp-fcl
-=============
+About hpp-fcl-feedstock
+=======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/hpp-fcl-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/humanoid-path-planner/hpp-fcl
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/hpp-fcl-feedstock/blob/main/LICENSE.txt)
 
 Summary: An extension of the Flexible Collision Library
 
