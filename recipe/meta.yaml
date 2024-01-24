@@ -68,6 +68,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - jorisv
     - jcarpent
     - wolfv
     - ymontmarin
