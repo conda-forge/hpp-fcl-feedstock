@@ -10,7 +10,7 @@ source:
   sha256: b6561bd76c0f5ca7a57c1e607cbcac31c8063fe58b9b42f229ae1e9e3cfa6ed9
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
