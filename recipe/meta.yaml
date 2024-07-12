@@ -41,6 +41,7 @@ requirements:
     - pylatexenc  # [not win]
     - lxml  # [not win]
     - qhull
+    - qhull-static  # [not win]
   run:
     - assimp
     - eigen
