@@ -41,6 +41,7 @@ requirements:
     - pylatexenc  # [not win]
     - lxml  # [not win]
     - qhull
+    - qhull-static  # [not win]
   run:
     - assimp
     - eigen
@@ -49,6 +50,9 @@ requirements:
     - eigenpy
     - {{ pin_compatible('numpy') }}
     - qhull
+    # Since qhullcpp is leaking in header file
+    # consumer will need it to build against hpp-fcl
+    - qhull-static  # [not win]
 
 test:
   requires:

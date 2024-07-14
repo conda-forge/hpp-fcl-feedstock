@@ -3,9 +3,9 @@ assimp:
 c_stdlib:
 - sysroot
 c_stdlib_version:
-- '2.12'
+- '2.17'
 cdt_name:
-- cos6
+- cos7
 channel_sources:
 - conda-forge
 channel_targets:
@@ -26,6 +26,8 @@ pin_run_as_build:
     max_pin: x.x
 python:
 - 3.9.* *_cpython
+qhull:
+- '2020.2'
 target_platform:
 - linux-64
 zip_keys:
