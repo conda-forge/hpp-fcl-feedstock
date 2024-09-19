@@ -1,13 +1,14 @@
 {% set name = "hpp-fcl" %}
-{% set version = "2.4.5" %}
+{% set version = "3.0.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/hpp-fcl-{{ version }}.tar.gz
-  sha256: 14ddfdecdbde323dedf988083e4929d05b5b125ec04effac3c2eec4daa099b43
+  # TODO use the archive when hpp-fcl 3 is released
+  git_url: https://github.com/jorisv/hpp-fcl
+  git_rev: topic/install-compatibility-layer
 
 build:
   number: 8
@@ -23,52 +24,23 @@ requirements:
     - {{ stdlib("c") }}
     - cmake
     - clang  # [win]
-    - make  # [not win]
+    - ninja
     - doxygen
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - numpy                                  # [build_platform != target_platform]
-    - pylatexenc  # [not win]
-    - lxml  # [not win]
   host:
-    - eigen
-    - libboost-python-devel
     - python
-    - eigenpy
-    - assimp
-    - octomap
-    # On Windows, Numpy 2.0 don't allow to export the PY_ARRAY_UNIQUE_SYMBOL.
-    # This has been fixed in Numpy 2.1.
-    - numpy >=2.1      # [win and py>=310]
-    # Unfortunatly, Numpy 2.1 is not distributed with Python 3.9.
-    # We are forced to use Numpy 1 in this case.
-    - numpy >=1.19,<2  # [win and py<310]
-    - numpy            # [not win]
-    - pylatexenc  # [not win]
-    - lxml  # [not win]
-    - qhull
-    - qhull-static  # [not win]
+    - numpy
+    - coal
   run:
-    - assimp
-    - eigen
-    - octomap
     - python
-    - eigenpy
-    - qhull
-    # Since qhullcpp is leaking in header file
-    # consumer will need it to build against hpp-fcl
-    - qhull-static  # [not win]
-    - numpy >=2.1                    # [win and py>=310]
-    - {{ pin_compatible('numpy') }}  # [win and py<310]
+    - {{ pin_compatible('numpy') }}
+    - coal
 
 test:
-  requires:
-    - pkg-config
   imports:
     - hppfcl
   commands:
-    - pkg-config --modversion {{ name }}
-    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}  # [unix]
+    - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\hpp-fcl\\hpp-fclConfig.cmake exit 1  # [win]
+    - test -f $PREFIX/lib/cmake/hpp-fcl/hpp-fclConfig.cmake  # [unix]
 
 about:
   home: https://github.com/humanoid-path-planner/hpp-fcl
