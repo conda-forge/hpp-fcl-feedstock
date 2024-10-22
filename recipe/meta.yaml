@@ -10,7 +10,7 @@ source:
   sha256: 14ddfdecdbde323dedf988083e4929d05b5b125ec04effac3c2eec4daa099b43
 
 build:
-  number: 5
+  number: 6
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
@@ -37,7 +37,13 @@ requirements:
     - eigenpy
     - assimp
     - octomap
-    - numpy
+    # On Windows, Numpy 2.0 don't allow to export the PY_ARRAY_UNIQUE_SYMBOL.
+    # This has been fixed in Numpy 2.1.
+    - numpy >=2.1      # [win and py>=310]
+    # Unfortunatly, Numpy 2.1 is not distributed with Python 3.9.
+    # We are forced to use Numpy 1 in this case.
+    - numpy >=1.19,<2  # [win and py<310]
+    - numpy            # [not win]
     - pylatexenc  # [not win]
     - lxml  # [not win]
     - qhull
@@ -48,11 +54,12 @@ requirements:
     - octomap
     - python
     - eigenpy
-    - {{ pin_compatible('numpy') }}
     - qhull
     # Since qhullcpp is leaking in header file
     # consumer will need it to build against hpp-fcl
     - qhull-static  # [not win]
+    - numpy >=2.1                    # [win and py>=310]
+    - {{ pin_compatible('numpy') }}  # [win and py<310]
 
 test:
   requires:
