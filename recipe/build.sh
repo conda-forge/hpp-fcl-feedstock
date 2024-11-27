@@ -31,10 +31,3 @@ cmake ${CMAKE_ARGS} .. \
       -DCOAL_BACKWARD_COMPATIBILITY_WITH_HPP_FCL=ON
 
 ninja install-hpp-fcl-compatibility
-
-if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
-  echo $BUILD_PREFIX
-  echo $PREFIX
-  sed -i.back 's|'"$BUILD_PREFIX"'|'"$PREFIX"'|g' $PREFIX/lib/cmake/hpp-fcl/hpp-fclTargets.cmake
-  rm $PREFIX/lib/cmake/hpp-fcl/hpp-fclTargets.cmake.back
-fi
