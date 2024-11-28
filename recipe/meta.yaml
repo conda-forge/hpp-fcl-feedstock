@@ -21,12 +21,12 @@ requirements:
     - cmake
     - ninja
   host:
-    - python
+    - python >=3.9
     - numpy
     - coal
   run:
     - coal
-    - python
+    - python >=3.9
 
 test:
   imports:
