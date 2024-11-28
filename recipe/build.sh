@@ -9,7 +9,6 @@ cmake ${CMAKE_ARGS} .. \
       -GNinja \
       -DCMAKE_BUILD_TYPE=Release \
       -DPYTHON_EXECUTABLE=$PYTHON \
-      -DPYTHON_SITELIB=$PREFIX/site-packages \
       -DGENERATE_PYTHON_STUBS=OFF \
       -DPython3_NumPy_INCLUDE_DIR=$Python3_NumPy_INCLUDE_DIR \
       -DBUILD_PYTHON_INTERFACE=ON \
