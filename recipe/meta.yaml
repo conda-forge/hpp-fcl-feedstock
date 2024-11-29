@@ -9,10 +9,15 @@ package:
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/{{ zipname }}-{{ version }}.tar.gz
   sha256: 6a9cbd4684e907fd16577e5227fbace06ac15ca861c0846dfe5bc81e565fb1e7
+  patches:
+    # https://github.com/coal-library/coal/pull/633
+    - patches/0001-cmake-Use-IMPLIB-instead-of-LOCATION-on-Windows.patch
 
 build:
   noarch: python
-  number: 0
+  number: 1
+  run_exports:
+    - {{ pin_subpackage(name, max_pin='x.x') }}
 
 requirements:
   build:
