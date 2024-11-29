@@ -1,24 +1,28 @@
-From e9c4fdf24690d113fdc38b81b6ab7b75c9c8b941 Mon Sep 17 00:00:00 2001
+From 203c7d98b24835cac991173dae0e20333e10246c Mon Sep 17 00:00:00 2001
 From: Joris Vaillant <joris.vaillant@inria.fr>
 Date: Fri, 29 Nov 2024 10:57:47 +0100
 Subject: [PATCH] cmake: Use IMPLIB instead of LOCATION on Windows
 
+Fix property reading
 ---
- hpp-fclConfig.cmake | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ hpp-fclConfig.cmake | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/hpp-fclConfig.cmake b/hpp-fclConfig.cmake
-index 1e266428..b169f3c0 100644
+index 1e266428..393e254b 100644
 --- a/hpp-fclConfig.cmake
 +++ b/hpp-fclConfig.cmake
-@@ -9,6 +9,10 @@ if(NOT TARGET hpp-fcl::hpp-fcl)
+@@ -8,7 +8,12 @@ if(NOT TARGET hpp-fcl::hpp-fcl)
+   add_library(hpp-fcl::hpp-fcl SHARED IMPORTED)
    target_link_libraries(hpp-fcl::hpp-fcl INTERFACE coal::coal)
    get_property(_cfg TARGET coal::coal PROPERTY IMPORTED_CONFIGURATIONS)
-   get_property(_loc TARGET coal::coal PROPERTY "IMPORTED_LOCATION_${_cfg}")
+-  get_property(_loc TARGET coal::coal PROPERTY "IMPORTED_LOCATION_${_cfg}")
 -  set_property(TARGET hpp-fcl::hpp-fcl PROPERTY IMPORTED_LOCATION "${_loc}")
 +  if(WIN32)
-+    set_property(TARGET hpp-fcl::hpp-fcl PROPERTY IMPORTED_IMPLIB "${_loc}")
++    get_property(_imp TARGET coal::coal PROPERTY "IMPORTED_IMPLIB_${_cfg}")
++    set_property(TARGET hpp-fcl::hpp-fcl PROPERTY IMPORTED_IMPLIB "${_imp}")
 +  else()
++    get_property(_loc TARGET coal::coal PROPERTY "IMPORTED_LOCATION_${_cfg}")
 +    set_property(TARGET hpp-fcl::hpp-fcl PROPERTY IMPORTED_LOCATION "${_loc}")
 +  endif()
    target_compile_definitions(hpp-fcl::hpp-fcl INTERFACE COAL_BACKWARD_COMPATIBILITY_WITH_HPP_FCL)
