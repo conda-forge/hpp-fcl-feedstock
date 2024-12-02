@@ -1,10 +1,6 @@
 mkdir build
 cd build
 
-set "CC=clang-cl.exe"
-set "CXX=clang-cl.exe"
-set "CL=/MP"
-
 cmake ^
     -GNinja ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
