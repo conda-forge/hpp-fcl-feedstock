@@ -1,0 +1,31 @@
+From c5efc62ce25973b4eb5fd72638f282b2fb53e000 Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Tue, 3 Dec 2024 13:20:44 +0100
+Subject: [PATCH] core: Fix pragma message use with clang-cl
+
+---
+ include/hpp/fcl/coal.hpp | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/include/hpp/fcl/coal.hpp b/include/hpp/fcl/coal.hpp
+index e4fdb758..8b53cc15 100644
+--- a/include/hpp/fcl/coal.hpp
++++ b/include/hpp/fcl/coal.hpp
+@@ -6,12 +6,8 @@
+ 
+ #define COAL_BACKWARD_COMPATIBILITY_WITH_HPP_FCL
+ 
+-#ifdef _MSC_VER
+-#pragma message COAL_DEPRECATED_HEADER( \
+-    "Please update your includes from 'hpp/fcl' to 'coal'")
+-#else
+-#warning "Please update your includes from 'hpp/fcl' to 'coal'"
+-#endif
++// Don't setup warning because there can be ignored by -isystem
++#pragma message("Please update your includes from 'hpp/fcl' to 'coal'")
+ 
+ #define HPP_FCL_VERSION_AT_LEAST(major, minor, patch) \
+   COAL_VERSION_AT_LEAST(major, minor, patch)
+-- 
+2.34.1
+
