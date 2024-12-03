@@ -11,11 +11,11 @@ source:
   sha256: 6a9cbd4684e907fd16577e5227fbace06ac15ca861c0846dfe5bc81e565fb1e7
   patches:
     # https://github.com/coal-library/coal/pull/633
-    - patches/0001-cmake-Use-IMPLIB-instead-of-LOCATION-on-Windows.patch
+    - patches/0001-cmake-Turn-hpp-fcl-into-an-interface-library.patch
 
 build:
   noarch: python
-  number: 2
+  number: 3
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -26,12 +26,14 @@ requirements:
     - cmake
     - ninja
   host:
-    - python {{ python_min }}
+    - python 3.10
     - numpy
     - coal
   run:
     - coal
     - python >={{ python_min }}
+    - __unix  # [unix]
+    - __win   # [win]
 
 test:
   imports:
