@@ -25,6 +25,8 @@ requirements:
   host:
     - python 3.10
     - numpy
+    - eigen
+    - eigen-abi-devel
     - coal {{ version }}
   run:
     # libcoal is run exported but not coal-python
