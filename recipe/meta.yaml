@@ -1,6 +1,6 @@
 {% set name = "hpp-fcl" %}
 {% set zipname = "coal" %}
-{% set version = "3.0.3" %}
+{% set version = "3.0.4" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/{{ zipname }}-{{ version }}.tar.gz
-  sha256: d1afcc0c22477a61e93e070a01cc8ed1d256a96ec65d308844d24b9caf771d36
+  sha256: 0a9091aa281f51b9513f11aae39758a6188bca63010524f36b3bdc566381ca4a
 
 build:
   noarch: python
